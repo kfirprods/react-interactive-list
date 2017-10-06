@@ -73,6 +73,7 @@ export default App;
 | `onRemoveItem` | function | Callback for when an item is removed. It is called with (uniqueId, value) |
 | `minItems` | Number | Minimum amount of items that must be in the list. The X button does not appear when this is the amount of items in the list. Defaults to 1. |
 | `maxItems` | Number | Maximum amount of items to be added to the list. The add button becomes disabled once this number of items is reached. Defaults to -1, meaning infinite. |
+| `addButtonText` | String | Text to display in the add button. Defaults to 'Add' |
 
 
 Note that all properties of InteractiveList are also passed to the `renderItem` function (its 1st parameter).

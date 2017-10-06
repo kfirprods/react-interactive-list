@@ -26,7 +26,13 @@ export default class InteractiveList extends React.Component {
         return this.props.maxItems || -1;
     }
 
-    addField() {
+    get addButtonText() {
+        return this.props.addButtonText || 'Add';
+    }
+
+    addField(e) {
+        e.preventDefault();
+
         let newItemId = ++this._lastItemId;
 
         this.setState({
@@ -105,7 +111,7 @@ export default class InteractiveList extends React.Component {
                 <button className={addButtonClassNames}
                         disabled={!mayAddItems}
                         onClick={this.addField}>
-                    Add
+                    {this.addButtonText}
                 </button>
             </div>
         );

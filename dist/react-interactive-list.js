@@ -1,9 +1,9 @@
 /*!
- * react-interactive-list 0.6.1 (dev build at Fri, 06 Oct 2017 12:24:25 GMT) - 
+ * react-interactive-list 0.6.3 (dev build at Fri, 06 Oct 2017 13:05:30 GMT) - 
  * MIT Licensed
  */
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -46,8 +46,10 @@ var InteractiveList = function (_React$Component) {
     }
 
     _createClass(InteractiveList, [{
-        key: "addField",
-        value: function addField() {
+        key: 'addField',
+        value: function addField(e) {
+            e.preventDefault();
+
             var newItemId = ++this._lastItemId;
 
             this.setState({
@@ -56,7 +58,7 @@ var InteractiveList = function (_React$Component) {
             this._values[newItemId] = null;
         }
     }, {
-        key: "removeField",
+        key: 'removeField',
         value: function removeField(itemId) {
             if (this.props.onRemoveItem) {
                 this.props.onRemoveItem(itemId, this._values[itemId]);
@@ -71,28 +73,28 @@ var InteractiveList = function (_React$Component) {
             delete this._values[itemId];
         }
     }, {
-        key: "handleItemValueChanged",
+        key: 'handleItemValueChanged',
         value: function handleItemValueChanged(itemId, newValue) {
             this._values[itemId] = newValue;
         }
     }, {
-        key: "renderRemoveButton",
+        key: 'renderRemoveButton',
         value: function renderRemoveButton(fieldId) {
             var _this2 = this;
 
             return _react2.default.createElement(
-                "a",
-                { href: "#",
-                    className: "table-cell delete",
+                'a',
+                { href: '#',
+                    className: 'table-cell delete',
                     onClick: function onClick(e) {
                         e.preventDefault();
                         _this2.removeField(fieldId);
                     } },
-                "\u2716"
+                '\u2716'
             );
         }
     }, {
-        key: "renderItems",
+        key: 'renderItems',
         value: function renderItems() {
             var _this3 = this;
 
@@ -101,11 +103,11 @@ var InteractiveList = function (_React$Component) {
                 var removeButton = removable ? _this3.renderRemoveButton(fieldId) : null;
 
                 return _react2.default.createElement(
-                    "div",
-                    { className: "table", key: fieldId },
+                    'div',
+                    { className: 'table', key: fieldId },
                     _react2.default.createElement(
-                        "div",
-                        { className: "table-cell interactive-item" },
+                        'div',
+                        { className: 'table-cell interactive-item' },
                         _this3.props.renderItem(_this3.props, removable, fieldId, index, function (newValue) {
                             return _this3.handleItemValueChanged(fieldId, newValue);
                         })
@@ -115,7 +117,7 @@ var InteractiveList = function (_React$Component) {
             });
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
             var fields = this.renderItems();
 
@@ -126,31 +128,36 @@ var InteractiveList = function (_React$Component) {
             }
 
             return _react2.default.createElement(
-                "div",
-                { className: "react-interactive-list" },
+                'div',
+                { className: 'react-interactive-list' },
                 _react2.default.createElement(
-                    "div",
-                    { className: "field-list field-input" },
+                    'div',
+                    { className: 'field-list field-input' },
                     fields
                 ),
                 _react2.default.createElement(
-                    "button",
+                    'button',
                     { className: addButtonClassNames,
                         disabled: !mayAddItems,
                         onClick: this.addField },
-                    "Add"
+                    this.addButtonText
                 )
             );
         }
     }, {
-        key: "minItems",
+        key: 'minItems',
         get: function get() {
             return this.props.minItems || 1;
         }
     }, {
-        key: "maxItems",
+        key: 'maxItems',
         get: function get() {
             return this.props.maxItems || -1;
+        }
+    }, {
+        key: 'addButtonText',
+        get: function get() {
+            return this.props.addButtonText || 'Add';
         }
     }]);
 

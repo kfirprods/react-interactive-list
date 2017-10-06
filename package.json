@@ -18,7 +18,7 @@
     "form",
     "input"
   ],
-  "version": "0.6.1",
+  "version": "0.6.3",
   "private": false,
   "peerDependencies": {
     "react": "^16.0.0"
