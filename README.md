@@ -8,6 +8,8 @@ npm install -s react-interactive-list
 ```
 
 ### Example
+#### Live Demo
+[![Edit React Interactive List example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xo690voonw)
 
 ```javascript
 import React from 'react';
