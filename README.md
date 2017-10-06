@@ -8,8 +8,13 @@ npm install -s react-interactive-list
 ```
 
 ### Example
-#### Live Demo
+#### Live Demos
+##### List of text inputs
 [![Edit React Interactive List example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xo690voonw)
+
+##### List of react-select components
+[![Edit React Interactive List SELECT example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/r47xkvp9zn)
+
 
 ```javascript
 import React from 'react';
@@ -28,7 +33,7 @@ class App extends React.Component {
         this.renderInput = this.renderInput.bind(this);
     }
 
-    renderInput(props, removable, index, onChangeCallback) {
+    renderInput(props, removable, uniqueId, index, onChangeCallback) {
         let inputClasses = 'interactive-list-input';
         if (removable) {
             inputClasses += ' interactive-list-input--removable';
@@ -65,6 +70,7 @@ export default App;
 :---|:---|:---
 | `renderItem (required)` | function | Render each item. It must call its 4th parameter `onChangeCallback` when the value of the rendered element changes.
 | `onChange` | function | Callback for when anything in the list changes. It is called with the entire list of values each time.
+| `onRemoveItem` | function | Callback for when an item is removed. It is called with (uniqueId, value) |
 | `minItems` | Number | Minimum amount of items that must be in the list. The X button does not appear when this is the amount of items in the list. Defaults to 1. |
 | `maxItems` | Number | Maximum amount of items to be added to the list. The add button becomes disabled once this number of items is reached. Defaults to -1, meaning infinite. |
 

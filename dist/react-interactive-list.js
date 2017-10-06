@@ -1,5 +1,5 @@
 /*!
- * react-interactive-list 0.4.0 (dev build at Fri, 06 Oct 2017 10:48:46 GMT) - 
+ * react-interactive-list 0.6.1 (dev build at Fri, 06 Oct 2017 12:24:25 GMT) - 
  * MIT Licensed
  */
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -58,6 +58,10 @@ var InteractiveList = function (_React$Component) {
     }, {
         key: "removeField",
         value: function removeField(itemId) {
+            if (this.props.onRemoveItem) {
+                this.props.onRemoveItem(itemId, this._values[itemId]);
+            }
+
             this.setState({
                 fields: this.state.fields.filter(function (id) {
                     return id !== itemId;
@@ -102,7 +106,7 @@ var InteractiveList = function (_React$Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "table-cell interactive-item" },
-                        _this3.props.renderItem(_this3.props, removable, index, function (newValue) {
+                        _this3.props.renderItem(_this3.props, removable, fieldId, index, function (newValue) {
                             return _this3.handleItemValueChanged(fieldId, newValue);
                         })
                     ),

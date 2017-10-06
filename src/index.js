@@ -36,6 +36,10 @@ export default class InteractiveList extends React.Component {
     }
 
     removeField(itemId) {
+        if (this.props.onRemoveItem) {
+            this.props.onRemoveItem(itemId, this._values[itemId]);
+        }
+
         this.setState({
             fields: this.state.fields.filter((id) => id !== itemId)
         });
@@ -71,6 +75,7 @@ export default class InteractiveList extends React.Component {
                         {this.props.renderItem(
                             this.props,
                             removable,
+                            fieldId,
                             index,
                             (newValue) => this.handleItemValueChanged(fieldId, newValue)
                         )}
