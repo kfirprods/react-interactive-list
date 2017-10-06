@@ -63,8 +63,8 @@ export default App;
 :---|:---|:---
 | `renderItem (required)` | function | Render each item. It must call its 4th parameter `onChangeCallback` when the value of the rendered element changes.
 | `onChange` | function | Callback for when anything in the list changes. It is called with the entire list of values each time.
-| `minItems` | Number | Determines if the current input text represents a valid option. By default any non-empty string will be considered valid. Expected signature: `({ label: string }): boolean` |
-| `maxItems` | Number | Factory to create new option. Expected signature: `({ label: string, labelKey: string, valueKey: string }): Object` |
+| `minItems` | Number | Minimum amount of items that must be in the list. The X button does not appear when this is the amount of items in the list. Defaults to 1. |
+| `maxItems` | Number | Maximum amount of items to be added to the list. The add button becomes disabled once this number of items is reached. Defaults to -1, meaning infinite. |
 
 
 Note that all properties of InteractiveList are also passed to the `renderItem` function (its 1st parameter).
