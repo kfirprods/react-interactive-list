@@ -7,31 +7,64 @@ You define how items are rendered (e.g text input).
 npm install -s react-interactive-list
 ```
 
-### Usage
+### Example
 
 ```javascript
-import InteractiveList from 'react-interactive-list'
+import React from 'react';
 
-function renderItem(props, index, onChangeCallback) {
-    return (
-       <div>
-           <span>{index+1}</span>
-           <input type="text" 
-                  onChange={(e) => onChangeCallback(e.target.value)} />;
-       </div>
-    );
+import InteractiveList from 'react-interactive-list';
+// IMPORTANT: This style is responsible for the basic formation
+import 'react-interactive-list/lib/styles/react-interactive-list.css';
+// Some extra styling for the input and the delete button
+import 'react-interactive-list/lib/styles/react-input-list.css';
+
+
+class App extends React.Component {
+    constructor() {
+        super();
+
+        this.renderInput = this.renderInput.bind(this);
+    }
+
+    renderInput(props, removable, index, onChangeCallback) {
+        let inputClasses = 'interactive-list-input';
+        if (removable) {
+            inputClasses += ' interactive-list-input--removable';
+        }
+
+        return (
+            <div className="table">
+                <span className="table-cell">{index+1}</span>
+
+                <div className="table-cell">
+                    <input type="text"
+                           className={inputClasses}
+                           onChange={(e) => onChangeCallback(e.target.value)}
+                           placeholder={props.placeholder} />
+                </div>
+            </div>
+        );
+    }
+
+    render() {
+        return (
+            <InteractiveList renderItem={this.renderInput}
+                             placeholder="Some Text"
+                             maxItems={3} />
+        );
+    }
 }
 
-<InteractiveList renderItem={renderItem} />
+export default App;
 ```
 
 ### Properties
-`renderItem (required)` - Function that returns JSX. It must call onChangeCallback when the value of the rendered element changes.
+| Property | Type | Description
+:---|:---|:---
+| `renderItem (required)` | function | Render each item. It must call its 4th parameter `onChangeCallback` when the value of the rendered element changes.
+| `onChange` | function | Callback for when anything in the list changes. It is called with the entire list of values each time.
+| `minItems` | Number | Determines if the current input text represents a valid option. By default any non-empty string will be considered valid. Expected signature: `({ label: string }): boolean` |
+| `maxItems` | Number | Factory to create new option. Expected signature: `({ label: string, labelKey: string, valueKey: string }): Object` |
 
-`onChange` - Callback for when anything in the list changes. It is called with the entire list of values each time.
 
-`minItems` - Minimum amount of items. Defaults to 1. 
-
-`maxItems` - Maximum amount of items. Defaults to -1, meaning there is no limit.
-
-Any other properties will be passed to the `renderItem` function (e.g placeholder)
+Note that all properties of InteractiveList are also passed to the `renderItem` function (its 1st parameter).

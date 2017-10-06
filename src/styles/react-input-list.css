@@ -1,0 +1,17 @@
+.interactive-list-input {
+    font-size: 18px;
+    width: 100%;
+    height: 2.25em;
+    padding: 0 0.75em;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.interactive-list-input--removable {
+    border-right: 0;
+}
+
+.delete {
+    border-left: 0;
+}
