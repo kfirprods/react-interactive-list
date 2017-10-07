@@ -1,5 +1,5 @@
 # react-interactive-list
-![alt text](https://github.com/kfirprods/react-interactive-list/master/interactive-list-demo.gif "Demo GIF")
+![alt text](https://raw.githubusercontent.com/kfirprods/react-interactive-list/master/interactive-list-demo.gif "Demo GIF")
 
 An interactive, dynamic list of components with add / remove buttons.
 You define how items are rendered (e.g text input).
